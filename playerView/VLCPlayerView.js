@@ -54,7 +54,8 @@ export default class VLCPlayerView extends Component {
     playInBackground: false,
     isGG: false,
     autoplay: true,
-    errorTitle: 'Error play video, please try again'
+    errorTitle: 'Error play video, please try again',
+    buffer: 100
   };
 
   componentDidMount() {
@@ -103,7 +104,8 @@ export default class VLCPlayerView extends Component {
       showLeftButton,
       showMiddleButton,
       showRightButton,
-      errorTitle
+      errorTitle,
+      buffer
     } = this.props;
     let { isLoading, loadingSuccess, showControls, isError } = this.state;
     let showGG = false;
@@ -232,6 +234,7 @@ export default class VLCPlayerView extends Component {
               showSlider={!isGG}
               showGG={showGG}
               onEnd={onEnd}
+              buffer={buffer}
               title={title}
               onLeftPress={onLeftPress}
               paused={this.state.paused}
