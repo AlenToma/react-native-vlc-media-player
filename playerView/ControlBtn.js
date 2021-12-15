@@ -12,7 +12,7 @@ import {
   StatusBar,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Slider} from '@miblanchard/react-native-slider';
+import { Slider } from '@miblanchard/react-native-slider';
 import PropTypes from 'prop-types';
 import TimeLimt from './TimeLimit';
 
@@ -72,7 +72,8 @@ export default class ControlBtn extends Component {
       showLeftButton,
       showMiddleButton,
       showRightButton,
-      style
+      style,
+      buffer
     } = this.props;
     return (
       <View style={[styles.controls, style]}>
@@ -107,7 +108,7 @@ export default class ControlBtn extends Component {
                 )
               }
 
-               {showSlider && totalTime > 0 &&(
+              {showSlider && totalTime > 0 && (
                 <View
                   style={{
                     flex: 1,
@@ -115,8 +116,8 @@ export default class ControlBtn extends Component {
                     flexDirection: 'row',
                     //justifyContent: 'space-between',
                   }}>
-                  <View style={{justifyContent:'center',alignItems:'center',height:50, minWidth: 50,}}>
-                    <Text style={{fontSize: 11,color: '#fff',}}>
+                  <View style={{ justifyContent: 'center', alignItems: 'center', height: 50, minWidth: 50, }}>
+                    <Text style={{ fontSize: 11, color: '#fff', }}>
                       {this._getTime(currentTime) || 0}
                     </Text>
                   </View>
@@ -127,6 +128,7 @@ export default class ControlBtn extends Component {
                       containerStyle={{ width: '100%' }}
                       value={currentTime}
                       maximumValue={totalTime}
+                      trackStyle={{ backgroundColor: "red", width: (buffer != undefined ? buffer : 0) + "%" }}
                       step={1}
                       onValueChange={value => {
                         onValueChange && onValueChange(value[0]);
@@ -136,14 +138,14 @@ export default class ControlBtn extends Component {
                       }}
                     />
                   </View>
-                  <View style={{justifyContent:'center',alignItems:'center',height:50, minWidth: 50}}>
-                  <Text
-                    style={{fontSize: 11,color: '#fff'}}>
-                    {this._getTime(totalTime) || 0}
-                  </Text>
+                  <View style={{ justifyContent: 'center', alignItems: 'center', height: 50, minWidth: 50 }}>
+                    <Text
+                      style={{ fontSize: 11, color: '#fff' }}>
+                      {this._getTime(totalTime) || 0}
+                    </Text>
                   </View>
                 </View>
-              )} 
+              )}
 
               <View style={styles.right}>
                 <TouchableOpacity
