@@ -12,7 +12,7 @@ import {
   StatusBar,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import Slider from 'react-native-slider';
+import {Slider} from '@miblanchard/react-native-slider';
 import PropTypes from 'prop-types';
 import TimeLimt from './TimeLimit';
 
@@ -83,7 +83,6 @@ export default class ControlBtn extends Component {
                 {
                   showLeftButton ? (
                     <TouchableOpacity
-                      activeOpacity={1}
                       onPress={() => {
                         onReplayPress && onReplayPress();
                       }}
@@ -99,7 +98,6 @@ export default class ControlBtn extends Component {
               {
                 showMiddleButton && (
                   <TouchableOpacity
-                    activeOpacity={1}
                     onPress={() => {
                       onPausedPress && onPausedPress(!paused);
                     }}
@@ -109,7 +107,7 @@ export default class ControlBtn extends Component {
                 )
               }
 
-              {/* {showSlider && totalTime > 0 &&(
+               {showSlider && totalTime > 0 &&(
                 <View
                   style={{
                     flex: 1,
@@ -126,15 +124,15 @@ export default class ControlBtn extends Component {
                     <Slider
                       minimumTrackTintColor="#30a935"
                       thumbStyle={styles.thumb}
-                      style={{ width: '100%' }}
+                      containerStyle={{ width: '100%' }}
                       value={currentTime}
                       maximumValue={totalTime}
                       step={1}
                       onValueChange={value => {
-                        onValueChange && onValueChange(value);
+                        onValueChange && onValueChange(value[0]);
                       }}
                       onSlidingComplete={value => {
-                        onSlidingComplete && onSlidingComplete(value);
+                        onSlidingComplete && onSlidingComplete(value[0]);
                       }}
                     />
                   </View>
@@ -145,11 +143,10 @@ export default class ControlBtn extends Component {
                   </Text>
                   </View>
                 </View>
-              )} */}
+              )} 
 
               <View style={styles.right}>
                 <TouchableOpacity
-                  activeOpacity={1}
                   onPress={() => {
                     onGoLivePress && onGoLivePress();
                   }}>
@@ -159,7 +156,6 @@ export default class ControlBtn extends Component {
                 {
                   showRightButton ? (
                     <TouchableOpacity
-                      activeOpacity={1}
                       onPress={() => {
                         onFullPress && onFullPress(!isFull);
                       }}
